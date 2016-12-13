@@ -1,0 +1,15 @@
+<div class="row">
+	<div class="col-lg-12">
+		<h1 class="page-header">서적목록
+			<small>한의학고전DB</small>
+		</h1>
+	</div>
+</div>
+
+<div class="list-group">
+  <a ng-repeat="book in dblist | orderBy:'title'"
+  		ng-href="https://mediclassics.kr/books/{{book.id}}" class="list-group-item list-group-item-action" target="_blank">
+    <h4 class="list-group-item-heading" ng-bind="book.title"></h4>
+    <p class="list-group-item-text">{{book.volumes}} 권, {{book.size}} 자</p>
+  </a>
+</div>
