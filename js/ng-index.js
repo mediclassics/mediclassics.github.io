@@ -85,11 +85,30 @@ function ($scope, $http, $routeParams, api) {
 		"의안정선" : { main: "의안정선시리즈", desc: "한의학 고전 국역서"}
 	}
 
+	function getEbookInfo( where ){
+		var ebookinfo = (where.platform === "gitbook")? {
+				"ebook": "https://www.gitbook.com/book/kmongoing/" + where.eBookId + "/details",
+				"coverImg": "https://git.gitbook.com/raw/kmongoing/" + where.eBookId + "/master/cover_small.jpg?token=a21vbmdvaW5nOjU2NDU5NzQ0LWE3YWUtNDk3Yi1iNGU1LTBlZTJjYzRkNzI4Yw%3D%3D"
+			} : {
+				"ebook": where.eBookurl,
+				"coverImg": where.coverImgUrl
+			}
+		return ebookinfo
+	}
+
 	$scope.title = title[ $routeParams.book ]
 
 	var reqUrl = api.kmapibox.rooturl + "book/" + $routeParams.book
+
 	$http.get( reqUrl, api.kmapibox.conf ).then(function(res){
-		var _data = res.data
+		var _data = res.data.map(function(e,i,arr){
+            return {
+                "publishDate": e["발행일"],
+                "title": e["제목"],
+                "url": getEbookInfo( {"eBookId":e.gitbookid, "platform": e.platform, "eBookurl": e.ebookurl, "coverImgUrl": e.coverimgurl} )
+			}
+        })
+
 		var i=0; var shelfsize=6; var tmp
 		var ebookinfos = []
 		for(i=0;i < 100; i=i+shelfsize) {
@@ -98,7 +117,7 @@ function ($scope, $http, $routeParams, api) {
 			ebookinfos.push (tmp)
 		}
 		$scope.ebookinfos = ebookinfos;
-		// console.log(ebookinfos)
+		console.log(ebookinfos)
 	})
 
 }])
