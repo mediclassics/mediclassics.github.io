@@ -3,7 +3,7 @@ var app = angular.module('mediclassicsInfo', ["ngRoute", "ngSanitize"]);
 app.constant("api", {
 
 	kmapibox: {
-		rooturl: "http://kmapibox.mediclassics.org" + "/api/data/",
+		rooturl: "https://kmapibox.mediclassics.org" + "/api/data/",
 		// rooturl: "http://cloud.mediclassics.org:8383/api/data/",
 		conf : {
 			headers : { },
@@ -58,7 +58,7 @@ function ($scope, $http, api) {
 	$http.get( reqUrl, api.mediclassics.conf ).then(function(res){
 		var _list = res.data.DATA.map(function(e) {
 		    return {
-				id:e.book_id,
+				id: e.book_id,
 				title: e.book_nm_kor,
 				size: e.count,
 				volumes: e.volumes.length
