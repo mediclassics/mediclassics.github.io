@@ -1,4 +1,4 @@
-var app = angular.module('mediclassicsInfo', ["ngRoute", "ngSanitize"]);
+var app = angular.module('mediclassicsInfo', ["ngRoute"]);
 
 app.constant("api", {
 
