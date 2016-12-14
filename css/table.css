@@ -1,0 +1,7 @@
+.table > tbody > tr {
+     vertical-align: middle;
+}
+
+/*.table > tbody > tr > th {
+     vertical-align: middle;
+}*/

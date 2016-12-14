@@ -29,6 +29,18 @@ $routeProvider
 		templateUrl: 'views/main.html',
 		controller: 'mainCtrl'
 	})
+	.when('/about', {
+		templateUrl: 'views/tmp.html',
+		controller: 'tmpCtrl'
+	})
+	.when('/contact', {
+		templateUrl: 'views/tmp.html',
+		controller: 'tmpCtrl'
+	})
+	.when('/error', {
+		templateUrl: 'views/error.html',
+		controller: 'errorCtrl'
+	})
 	.when('/db/list', {
 		templateUrl: 'views/db-list.html',
 		controller: 'DBlistCtrl'
@@ -42,11 +54,21 @@ $routeProvider
 		controller: 'bookShelfCtrl'
 	})
 	.otherwise({
-		redirectTo: '/'
+		redirectTo: '/error'
 	});
 }]);
 
-app.controller("mainCtrl", ['$scope', '$http', function ($scope, $http) {
+app.controller("mainCtrl", ['$scope', function ($scope) {
+
+
+}])
+
+app.controller("tmpCtrl", ['$scope', function ($scope) {
+
+
+}])
+
+app.controller("errorCtrl", ['$scope', function ($scope) {
 
 
 }])
