@@ -82,7 +82,7 @@ function ($scope, $http, $routeParams, api) {
 	// $routeParams.book = ["ebook", "정선의안"]
 	var title = {
 		"ebook" : { main: "eBook", desc: "한의학 고전 국역서" },
-		"의안정선" : { main: "의안정선시리즈", desc: "한의학 고전 국역서"}
+		"정선의안" : { main: "정선의안시리즈", desc: "한의학 고전 국역서"}
 	}
 
 	function getEbookInfo( where ){
@@ -111,7 +111,7 @@ function ($scope, $http, $routeParams, api) {
 
 		var i=0; var shelfsize=6; var tmp
 		var ebookinfos = []
-		for(i=0;i < 100; i=i+shelfsize) {
+		for(i=0;i < 60; i=i+shelfsize) {
 			tmp = _data.slice(i, i+shelfsize)
 			if(tmp.length<1){ break; }
 			ebookinfos.push (tmp)
