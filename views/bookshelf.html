@@ -6,13 +6,16 @@
 	<div class="col-lg-12">
 		<h1 class="page-header">{{title.main}}
 			<small ng-bind="title.desc"></small>
-			<small><a class="btn btn-sm btn-info pull-right" href="https://docs.google.com/spreadsheets/d/1qQ0Frx6hN9X-T_EVJer3sy-LTSw1oM9hweDj9XD_nC8" target="_blank">sheets</a></small>
+			<small><a class="btn btn-sm btn-info pull-right" ng-click="openSheets()">sheets</a></small>
 		</h1>
 	</div>
 </div>
 
+<div class="container" ng-hide="booklistloaded">
+	<div ng-include="'parts/loading.html'"></div>
+</div>
 
-<div class="container">
+<div class="container" ng-show="booklistloaded">
 
 	<div class="row" ng-repeat="sixbooks in ebookinfos">
 

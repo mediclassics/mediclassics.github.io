@@ -3,7 +3,7 @@ var app = angular.module('mediclassicsInfo', ["ngRoute"]);
 app.constant("api", {
 
 	kmapibox: {
-		rooturl: "https://kmapibox.mediclassics.org" + "/api/data/",
+		rooturl: "https://kmapibox.mediclassics.org" + "/api/",
 		// rooturl: "http://cloud.mediclassics.org:8383/api/data/",
 		conf : {
 			headers : { },
@@ -76,8 +76,11 @@ app.controller("errorCtrl", ['$scope', function ($scope) {
 app.controller("DBlistCtrl", ['$scope', '$http', 'api',
 function ($scope, $http, api) {
 
+	$scope.booklistloaded = false
+
 	var reqUrl = api.mediclassics.rooturl + "character-count"
-	$http.get( reqUrl, api.mediclassics.conf ).then(function(res){
+	$http.get( reqUrl, api.mediclassics.conf )
+	.then(function(res){
 		var _list = res.data.DATA.map(function(e) {
 		    return {
 				id: e.book_id,
@@ -89,6 +92,7 @@ function ($scope, $http, api) {
 
 		$scope.dblist = _list;
 		console.log(_list)
+		$scope.booklistloaded = true
 	})
 
 }])
@@ -98,8 +102,10 @@ app.controller("DBappsCtrl", ['$scope', '$http', function ($scope, $http) {
 
 }])
 
-app.controller("bookShelfCtrl", ['$scope', '$http', '$routeParams', 'api',
-function ($scope, $http, $routeParams, api) {
+app.controller("bookShelfCtrl", ['$scope', '$http', '$routeParams', 'api', '$window',
+function ($scope, $http, $routeParams, api, $window) {
+
+	$scope.booklistloaded = false
 
 	// $routeParams.book = ["ebook", "정선의안"]
 	var title = {
@@ -120,9 +126,10 @@ function ($scope, $http, $routeParams, api) {
 
 	$scope.title = title[ $routeParams.book ]
 
-	var reqUrl = api.kmapibox.rooturl + "book/" + $routeParams.book
+	var reqUrl = api.kmapibox.rooturl + "data/book/" + $routeParams.book
 
-	$http.get( reqUrl, api.kmapibox.conf ).then(function(res){
+	$http.get( reqUrl, api.kmapibox.conf )
+	.then(function(res){
 		var _data = res.data.map(function(e,i,arr){
             return {
                 "publishDate": e["발행일"],
@@ -140,6 +147,28 @@ function ($scope, $http, $routeParams, api) {
 		}
 		$scope.ebookinfos = ebookinfos;
 		console.log(ebookinfos)
+
+		$scope.booklistloaded = true
 	})
+
+	$scope.openSheets = function(){
+
+		var mima = prompt("Please enter admin password");
+
+		$http.post( api.kmapibox.rooturl + "auth", {"serial": mima}, api.kmapibox.conf )
+		.then(function(res){
+			console.log(res)
+			if( res.data.auth  ){
+				$window.open("https://docs.google.com/spreadsheets/d/1qQ0Frx6hN9X-T_EVJer3sy-LTSw1oM9hweDj9XD_nC8/", "_blank")
+			} else {
+				alert("wrong password");
+			}
+		})
+		.catch(function(err){
+			console.log(err)
+			alert("wrong password");
+		})
+
+	}
 
 }])
