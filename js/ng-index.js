@@ -82,7 +82,7 @@ function ($scope, $http, api) {
 	$scope.booklistloaded = false
 
 	var reqUrl = api.mediclassics.rooturl + "character-count"
-	$http.get( reqUrl, api.mediclassics.conf )
+	$http.get( encodeURI(reqUrl), api.mediclassics.conf )
 	.then(function(res){
 		var _list = res.data.DATA.map(function(e) {
 		    return {
@@ -131,7 +131,7 @@ function ($scope, $http, $routeParams, api, $window) {
 
 	var reqUrl = api.kmapibox.rooturl + "data/book/" + $routeParams.book
 
-	$http.get( reqUrl, api.kmapibox.conf )
+	$http.get( encodeURI(reqUrl), api.kmapibox.conf )
 	.then(function(res){
 		var _data = res.data.map(function(e,i,arr){
             return {
@@ -195,7 +195,7 @@ function ($scope, $http, api) {
 	https://kmapibox.mediclassics.org/api/data/gitbook?endpoint=book/kmongoing/sanghankyung/traffic
 */
 
-	$http.get( reqUrl, api.kmapibox.conf )
+	$http.get( encodeURI(reqUrl), api.kmapibox.conf )
 	.then(function(res){
 		var _list = res.data.list
 		var promises = []
@@ -206,7 +206,7 @@ function ($scope, $http, api) {
 					"created": _list[i].dates.created,
 					"urls": _list[i].urls
 				}
-				promises.push( $http.get( apiend_traffic(_list[i].id), api.kmapibox.conf ) )
+				promises.push( $http.get( encodeURI( apiend_traffic(_list[i].id) ), api.kmapibox.conf ) )
 			})(i)
 		}
 
