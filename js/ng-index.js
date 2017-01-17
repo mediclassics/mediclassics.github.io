@@ -3,7 +3,7 @@ var app = angular.module('mediclassicsInfo', ["ngRoute"]);
 app.constant("api", {
 
 	kmapibox: {
-		rooturl: "https://kmapibox.mediclassics.org" + "/api/",
+		rooturl: "http://kmapibox.mediclassics.org" + "/api/",
 		// rooturl: "http://cloud.mediclassics.org:8383/api/data/",
 		conf : {
 			headers : { },
@@ -18,7 +18,6 @@ app.constant("api", {
 				'Authorization': "b0a200dc25e74531b8cae037427d1578", 'Content-Type': "application/json;charset=utf-8"
 			},
 			data: "" // 이게 없으면 Content-Type이 설정되지 않음 //
-
 		}
 	}
 })
@@ -52,6 +51,10 @@ $routeProvider
 	.when('/shelf/:book', {
 		templateUrl: 'views/bookshelf.html',
 		controller: 'bookShelfCtrl'
+	})
+	.when('/data/ebook', {
+		templateUrl: 'views/eBooklist.html',
+		controller: 'eBooklistCtrl'
 	})
 	.otherwise({
 		redirectTo: '/error'
@@ -170,5 +173,65 @@ function ($scope, $http, $routeParams, api, $window) {
 		})
 
 	}
+
+}])
+
+app.controller("eBooklistCtrl", ['$scope', '$http', 'api',
+function ($scope, $http, api) {
+
+	$scope.booklistloaded = false
+
+	var reqUrl = api.kmapibox.rooturl + "data/gitbook?endpoint=books"
+
+	function apiend_traffic(bookid){
+		return api.kmapibox.rooturl + "data/gitbook?endpoint=book/" + bookid + "/traffic"
+	}
+
+	var booklist = {}
+
+/*
+	https://kmapibox.mediclassics.org/api/data/gitbook?endpoint=books
+	https://kmapibox.mediclassics.org/api/data/gitbook?endpoint=book/kmongoing/sanghankyung
+	https://kmapibox.mediclassics.org/api/data/gitbook?endpoint=book/kmongoing/sanghankyung/traffic
+*/
+
+	$http.get( reqUrl, api.kmapibox.conf )
+	.then(function(res){
+		var _list = res.data.list
+		var promises = []
+		for(var i=0;i<_list.length;i++){
+			(function(i){
+				booklist[ _list[i].id.split("/")[1] ] = {
+					"title": _list[i].title,
+					"created": _list[i].dates.created,
+					"urls": _list[i].urls
+				}
+				promises.push( $http.get( apiend_traffic(_list[i].id), api.kmapibox.conf ) )
+			})(i)
+		}
+
+		Promise.all( promises ).then(function(values){
+
+			$scope.ebook_traffic = values.map(function(e){
+				var tmp = e.data
+				tmp.id = e.config.url.split("/")[7]
+				tmp.title = booklist[tmp.id].title
+				tmp.created = booklist[tmp.id].created
+				tmp.urls = booklist[tmp.id].urls
+				return tmp
+			 });
+
+			$scope.booklistloaded = true
+			$scope.$apply()
+
+		}).catch(function(){
+
+			$scope.ebook_traffic = []
+			$scope.booklistloaded = true
+			$scope.$apply()
+
+		})
+
+	})
 
 }])

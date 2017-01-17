@@ -28,8 +28,8 @@
 		<tr ng-repeat="book in dblist | orderBy:'title'">
 			<th scope="row" ng-bind="$index+1"></td>
 			<td ng-bind="book.title"></td>
-			<td ng-bind="book.volumes"></td>
-			<td ng-bind="book.size"></td>
+			<td ng-bind="book.volumes | number"></td>
+			<td ng-bind="book.size | number"></td>
 			<td>
 				<a class="btn btn-default" ng-href="https://mediclassics.kr/books/{{book.id}}" target="_blank">
 					열기 <span class="glyphicon glyphicon-new-window" aria-hidden="true"></span>
