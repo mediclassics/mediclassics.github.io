@@ -3,7 +3,7 @@ var app = angular.module('mediclassicsInfo', ["ngRoute"]);
 app.constant("api", {
 
 	kmapibox: {
-		rooturl: "http://kmapibox.mediclassics.org" + "/api/",
+		rooturl: "https://kmapibox.mediclassics.org" + "/api/",
 		// rooturl: "http://cloud.mediclassics.org:8383/api/data/",
 		conf : {
 			headers : { },
