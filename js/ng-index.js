@@ -3,7 +3,7 @@ var app = angular.module('mediclassicsInfo', ["ngRoute"]);
 app.constant("api", {
 
 	kmapibox: {
-		rooturl: "https://kmapibox.mediclassics.org" + "/api/",
+		rooturl: "https://script.google.com/macros/s/AKfycbzRr3GWJ45uUc57IcNxbOX35Aetv23PHlhm_vLKSYqZI7UzzCao/exec",   //  google apps script
 		// rooturl: "http://cloud.mediclassics.org:8383/api/data/",
 		conf : {
 			headers : { },
@@ -116,12 +116,15 @@ function ($scope, $http, $routeParams, api, $window) {
 		"정선의안" : { main: "정선의안시리즈", desc: "한의학 고전 국역서"}
 	}
 
+	var seriesno = { "ebook" : 1, "정선의안": 2 }
+
 	function getEbookInfo( where ){
-		var ebookinfo = (where.platform === "gitbook")? {
+		var ebookinfo = (where.platform === "gitbook")?
+			{
 				"ebook": "https://www.gitbook.com/book/kmongoing/" + where.eBookId + "/details",
-				"coverImg": "https://git.gitbook.com/raw/kmongoing/" + where.eBookId + "/master/cover_small.jpg?token=a21vbmdvaW5nOjU2NDU5NzQ0LWE3YWUtNDk3Yi1iNGU1LTBlZTJjYzRkNzI4Yw%3D%3D"
+				"coverImg": "https://git.gitbook.com/raw/kmongoing/" + where.eBookId +  "/master/cover_small.jpg?token=a21vbmdvaW5nOjU2NDU5NzQ0LWE3YWUtNDk3Yi1iNGU1LTBlZTJjYzRkNzI4Yw%3D%3D"
 			} : {
-				"ebook": where.eBookurl,
+				"ebook": where.eBookUrl,
 				"coverImg": where.coverImgUrl
 			}
 		return ebookinfo
@@ -129,15 +132,15 @@ function ($scope, $http, $routeParams, api, $window) {
 
 	$scope.title = title[ $routeParams.book ]
 
-	var reqUrl = api.kmapibox.rooturl + "data/book/" + $routeParams.book
+	var reqUrl = api.kmapibox.rooturl + "?order=info&target=bookshelf&seriesno=" + seriesno[ $routeParams.book ]
 
 	$http.get( encodeURI(reqUrl), api.kmapibox.conf )
 	.then(function(res){
-		var _data = res.data.map(function(e,i,arr){
+		var _data = res.data.data.map(function(e,i,arr){
             return {
                 "publishDate": e["발행일"],
                 "title": e["제목"],
-                "url": getEbookInfo( {"eBookId":e.gitbookid, "platform": e.platform, "eBookurl": e.ebookurl, "coverImgUrl": e.coverimgurl} )
+                "url": getEbookInfo( { "eBookId":e.gitbookid, "platform": e.platform, "eBookUrl": e.eBookUrl, "coverImgUrl": e.coverImgUrl } )
 			}
         })
 
@@ -158,10 +161,10 @@ function ($scope, $http, $routeParams, api, $window) {
 
 		var mima = prompt("Please enter admin password");
 
-		$http.post( api.kmapibox.rooturl + "auth", {"serial": mima}, api.kmapibox.conf )
+		$http.get( api.kmapibox.rooturl + "?order=auth&serial=" + mima, api.kmapibox.conf )
 		.then(function(res){
 			console.log(res)
-			if( res.data.auth  ){
+			if( res.data.data.auth  ){
 				$window.open("https://docs.google.com/spreadsheets/d/1qQ0Frx6hN9X-T_EVJer3sy-LTSw1oM9hweDj9XD_nC8/", "_blank")
 			} else {
 				alert("wrong password");
