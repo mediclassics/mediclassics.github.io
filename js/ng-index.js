@@ -3,6 +3,15 @@ var app = angular.module('mediclassicsInfo', ["ngRoute"]);
 app.constant("api", {
 
 	kmapibox: {
+		rooturl: "https://kmapibox.mediclassics.org/api/",   //  google apps script
+		// rooturl: "http://cloud.mediclassics.org:8383/api/data/",
+		conf : {
+			headers : { },
+			data: ""
+			// 이게 없으면 Content-Type이 설정되지 않음 // https://stackoverflow.com/questions/24895290/content-type-header-not-being-set-with-angular-http
+		}
+	},
+	gasapi: {
 		rooturl: "https://script.google.com/macros/s/AKfycbzRr3GWJ45uUc57IcNxbOX35Aetv23PHlhm_vLKSYqZI7UzzCao/exec",   //  google apps script
 		// rooturl: "http://cloud.mediclassics.org:8383/api/data/",
 		conf : {
@@ -132,9 +141,9 @@ function ($scope, $http, $routeParams, api, $window) {
 
 	$scope.title = title[ $routeParams.book ]
 
-	var reqUrl = api.kmapibox.rooturl + "?order=info&target=bookshelf&seriesno=" + seriesno[ $routeParams.book ]
+	var reqUrl = api.gasapi.rooturl + "?order=info&target=bookshelf&seriesno=" + seriesno[ $routeParams.book ]
 
-	$http.get( encodeURI(reqUrl), api.kmapibox.conf )
+	$http.get( encodeURI(reqUrl) )
 	.then(function(res){
 		var _data = res.data.data.map(function(e,i,arr){
             return {
@@ -161,7 +170,7 @@ function ($scope, $http, $routeParams, api, $window) {
 
 		var mima = prompt("Please enter admin password");
 
-		$http.get( api.kmapibox.rooturl + "?order=auth&serial=" + mima, api.kmapibox.conf )
+		$http.get( api.gasapi.rooturl + "?order=auth&serial=" + mima )
 		.then(function(res){
 			console.log(res)
 			if( res.data.data.auth  ){
