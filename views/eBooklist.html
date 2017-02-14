@@ -29,9 +29,9 @@
 		<tr ng-repeat="ebook in ebook_traffic | orderBy: 'created'">
 			<th scope="row" ng-bind="$index+1"></td>
 			<td ng-bind="ebook.title"></td>
-			<td ng-bind="ebook.total | number"></td>
-			<td ng-bind="ebook.unique | number"></td>
-			<td ng-bind="ebook.downloads | number"></td>
+			<td ng-bind="ebook.traffic.total | number"></td>
+			<td ng-bind="ebook.traffic.unique | number"></td>
+			<td ng-bind="ebook.traffic.downloads | number"></td>
 			<td>
 				<a class="btn btn-default" ng-href="{{ebook.urls.homepage}}" target="_blank">
 					열기 <span class="glyphicon glyphicon-new-window" aria-hidden="true"></span>

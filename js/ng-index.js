@@ -2,18 +2,18 @@ var app = angular.module('mediclassicsInfo', ["ngRoute"]);
 
 app.constant("api", {
 
-	kmapibox: {
-		rooturl: "https://kmapibox.mediclassics.org/api/",   //  google apps script
-		// rooturl: "http://cloud.mediclassics.org:8383/api/data/",
+	gas_gitbook: {
+		//  google apps script
+		rooturl: "https://script.google.com/macros/s/AKfycbzz7e9tE1MeS6PGZbaU168rjaWCf_hhZqZzaQH6QPYmlrMCQYg4/exec",   
 		conf : {
 			headers : { },
 			data: ""
 			// 이게 없으면 Content-Type이 설정되지 않음 // https://stackoverflow.com/questions/24895290/content-type-header-not-being-set-with-angular-http
 		}
 	},
-	gasapi: {
-		rooturl: "https://script.google.com/macros/s/AKfycbzRr3GWJ45uUc57IcNxbOX35Aetv23PHlhm_vLKSYqZI7UzzCao/exec",   //  google apps script
-		// rooturl: "http://cloud.mediclassics.org:8383/api/data/",
+	gas_mediclassics: {
+		//  google apps script
+		rooturl: "https://script.google.com/macros/s/AKfycbzRr3GWJ45uUc57IcNxbOX35Aetv23PHlhm_vLKSYqZI7UzzCao/exec",
 		conf : {
 			headers : { },
 			data: ""
@@ -141,7 +141,7 @@ function ($scope, $http, $routeParams, api, $window) {
 
 	$scope.title = title[ $routeParams.book ]
 
-	var reqUrl = api.gasapi.rooturl + "?order=info&target=bookshelf&seriesno=" + seriesno[ $routeParams.book ]
+	var reqUrl = api.gas_mediclassics.rooturl + "?order=info&target=bookshelf&seriesno=" + seriesno[ $routeParams.book ]
 
 	$http.get( encodeURI(reqUrl) )
 	.then(function(res){
@@ -170,7 +170,7 @@ function ($scope, $http, $routeParams, api, $window) {
 
 		var mima = prompt("Please enter admin password");
 
-		$http.get( api.gasapi.rooturl + "?order=auth&serial=" + mima )
+		$http.get( api.gas_mediclassics.rooturl + "?order=auth&serial=" + mima )
 		.then(function(res){
 			console.log(res)
 			if( res.data.data.auth  ){
@@ -193,24 +193,26 @@ function ($scope, $http, api) {
 
 	$scope.booklistloaded = false
 
-	var reqUrl = api.kmapibox.rooturl + "data/gitbook?endpoint=books"
+	var reqUrl = api.gas_gitbook.rooturl + "?order=tunnel&endpoint=books"
 
 	function apiend_traffic(bookid){
-		return api.kmapibox.rooturl + "data/gitbook?endpoint=book/" + bookid + "/traffic"
+		return api.gas_gitbook.rooturl + "?order=tunnel&endpoint=book/" + bookid + "/traffic"
 	}
 
 	var booklist = {}
 
 /*
-	https://kmapibox.mediclassics.org/api/data/gitbook?endpoint=books
-	https://kmapibox.mediclassics.org/api/data/gitbook?endpoint=book/kmongoing/sanghankyung
-	https://kmapibox.mediclassics.org/api/data/gitbook?endpoint=book/kmongoing/sanghankyung/traffic
+	//apibase?order=tunnel&endpoint=books
+	//apibase?order=tunnel&endpoint=book/kmongoing/sanghankyung
+	//apibase?order=tunnel&endpoint=book/kmongoing/sanghankyung/traffic
 */
 
-	$http.get( encodeURI(reqUrl), api.kmapibox.conf )
+	$http.get( encodeURI(reqUrl) )
 	.then(function(res){
-		var _list = res.data.list
+
+		var _list = res.data.data.list
 		var promises = []
+
 		for(var i=0;i<_list.length;i++){
 			(function(i){
 				booklist[ _list[i].id.split("/")[1] ] = {
@@ -218,26 +220,29 @@ function ($scope, $http, api) {
 					"created": _list[i].dates.created,
 					"urls": _list[i].urls
 				}
-				promises.push( $http.get( encodeURI( apiend_traffic(_list[i].id) ), api.kmapibox.conf ) )
+
+				promises.push( $http.get( encodeURI( apiend_traffic(_list[i].id) ) ) )
 			})(i)
 		}
-
+		// console.log( booklist )
 		Promise.all( promises ).then(function(values){
-
+			console.log( values )
 			$scope.ebook_traffic = values.map(function(e){
-				var tmp = e.data
-				tmp.id = e.config.url.split("/")[7]
+				var tmp = {}
+				tmp.id = e.config.url.split("/")[8]
 				tmp.title = booklist[tmp.id].title
 				tmp.created = booklist[tmp.id].created
 				tmp.urls = booklist[tmp.id].urls
+				tmp.traffic = e.data.data
+				// console.log(tmp)
 				return tmp
 			 });
 
 			$scope.booklistloaded = true
 			$scope.$apply()
 
-		}).catch(function(){
-
+		}).catch(function(e){
+			console.log(e)
 			$scope.ebook_traffic = []
 			$scope.booklistloaded = true
 			$scope.$apply()
