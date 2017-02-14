@@ -2,33 +2,16 @@ var app = angular.module('mediclassicsInfo', ["ngRoute"]);
 
 app.constant("api", {
 
-	gas_gitbook: {
-		//  google apps script
-		rooturl: "https://script.google.com/macros/s/AKfycbzz7e9tE1MeS6PGZbaU168rjaWCf_hhZqZzaQH6QPYmlrMCQYg4/exec",   
-		conf : {
-			headers : { },
-			data: ""
-			// 이게 없으면 Content-Type이 설정되지 않음 // https://stackoverflow.com/questions/24895290/content-type-header-not-being-set-with-angular-http
-		}
+	gas_base : { 		//  google apps script
+		rooturl: "https://script.google.com/macros/s/AKfycbympvympXtKsR7l5B7-cZ_UTUgQtfa0Ew8beP-UiEGbeWw8XLg/exec"
 	},
-	gas_mediclassics: {
-		//  google apps script
-		rooturl: "https://script.google.com/macros/s/AKfycbzRr3GWJ45uUc57IcNxbOX35Aetv23PHlhm_vLKSYqZI7UzzCao/exec",
-		conf : {
-			headers : { },
-			data: ""
-			// 이게 없으면 Content-Type이 설정되지 않음 // https://stackoverflow.com/questions/24895290/content-type-header-not-being-set-with-angular-http
-		}
+	gas_gitbook: { 		//  google apps script
+		rooturl: "https://script.google.com/macros/s/AKfycbzz7e9tE1MeS6PGZbaU168rjaWCf_hhZqZzaQH6QPYmlrMCQYg4/exec"
 	},
-	mediclassics: {
-		rooturl: "https://mediclassics.kr/api/statistics/",
-		conf : {
-			headers : {
-				'Authorization': "b0a200dc25e74531b8cae037427d1578", 'Content-Type': "application/json;charset=utf-8"
-			},
-			data: "" // 이게 없으면 Content-Type이 설정되지 않음 //
-		}
+	gas_mediclassics: { //  google apps script
+		rooturl: "https://script.google.com/macros/s/AKfycbzRr3GWJ45uUc57IcNxbOX35Aetv23PHlhm_vLKSYqZI7UzzCao/exec"
 	}
+
 })
 
 app.config(['$routeProvider', function($routeProvider) {
@@ -90,10 +73,11 @@ function ($scope, $http, api) {
 
 	$scope.booklistloaded = false
 
-	var reqUrl = api.mediclassics.rooturl + "character-count"
-	$http.get( encodeURI(reqUrl), api.mediclassics.conf )
-	.then(function(res){
-		var _list = res.data.DATA.map(function(e) {
+	var reqUrl = api.gas_mediclassics.rooturl + "?order=statistics"
+
+	$http.get( encodeURI(reqUrl) ).then(function(res){
+		// console.log(res)
+		var _list = res.data.data.DATA.map(function(e) {
 		    return {
 				id: e.book_id,
 				title: e.book_nm_kor,
@@ -143,8 +127,7 @@ function ($scope, $http, $routeParams, api, $window) {
 
 	var reqUrl = api.gas_mediclassics.rooturl + "?order=info&target=bookshelf&seriesno=" + seriesno[ $routeParams.book ]
 
-	$http.get( encodeURI(reqUrl) )
-	.then(function(res){
+	$http.get( encodeURI(reqUrl) ).then(function(res){
 		var _data = res.data.data.map(function(e,i,arr){
             return {
                 "publishDate": e["발행일"],
@@ -169,9 +152,9 @@ function ($scope, $http, $routeParams, api, $window) {
 	$scope.openSheets = function(){
 
 		var mima = prompt("Please enter admin password");
+		var api_end_point = api.gas_base.rooturl + "?order=auth&serial=" + mima
 
-		$http.get( api.gas_mediclassics.rooturl + "?order=auth&serial=" + mima )
-		.then(function(res){
+		$http.get( encodeURI( api_end_point ) ).then(function(res){
 			console.log(res)
 			if( res.data.data.auth  ){
 				$window.open("https://docs.google.com/spreadsheets/d/1qQ0Frx6hN9X-T_EVJer3sy-LTSw1oM9hweDj9XD_nC8/", "_blank")
