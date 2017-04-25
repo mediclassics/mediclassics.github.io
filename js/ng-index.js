@@ -106,10 +106,11 @@ function ($scope, $http, $routeParams, api, $window) {
 	// $routeParams.book = ["ebook", "정선의안"]
 	var title = {
 		"ebook" : { main: "eBook", desc: "한의학 고전 국역서" },
-		"정선의안" : { main: "정선의안시리즈", desc: "한의학 고전 국역서"}
+		"정선의안" : { main: "정선의안시리즈", desc: "한의학 고전 국역서"},
+		"사료총서" : { main: "한국의학사료총서", desc: "한국 의학 사료"}
 	}
 
-	var seriesno = { "ebook" : 1, "정선의안": 2 }
+	var seriesno = { "ebook" : 1, "정선의안": 2, "사료총서": 3 }
 
 	function getEbookInfo( where ){
 		var ebookinfo = (where.platform === "gitbook")?
