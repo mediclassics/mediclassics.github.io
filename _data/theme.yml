@@ -1,8 +1,8 @@
 # Theme customization - please change from the defaults!
 
-title: "MEDICLASSICS Info"
-author: "KIOM mediclassics"
-description: "한국한의학연구원 KIOM 고문헌 mediclassics"
+title: "한의학고전DB 알림페이지"
+author: "한국한의학연구원 고문헌팀 | KIOM "
+description: "고문헌 mediclassics mediclassics.kr mediclassics.org"
 
 # Color for top bar, links, etc
 highlight_color: '#3498db'

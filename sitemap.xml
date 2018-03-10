@@ -1,0 +1,29 @@
+---
+layout: null
+---
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  {% for collection in site.collections %}
+    <url>
+      <loc>{{ site.url }}{{ site.baseurl }}{{ collection.url }}</loc>
+      {% if collection.lastmod == null %}
+        <lastmod>{{ collection.date | date_to_xmlschema }}</lastmod>
+      {% else %}
+        <lastmod>{{ collection.lastmod | date_to_xmlschema }}</lastmod>
+      {% endif %}
+
+      {% if collection.sitemap.changefreq == null %}
+        <changefreq>weekly</changefreq>
+      {% else %}
+        <changefreq>{{ collection.sitemap.changefreq }}</changefreq>
+      {% endif %}
+
+      {% if collection.sitemap.priority == null %}
+          <priority>0.5</priority>
+      {% else %}
+        <priority>{{ collection.sitemap.priority }}</priority>
+      {% endif %}
+
+    </url>
+  {% endfor %}
+</urlset>

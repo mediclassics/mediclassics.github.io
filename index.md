@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "반갑습니다!"
+title: "연구 결과"
 description: ""
 ---
 
