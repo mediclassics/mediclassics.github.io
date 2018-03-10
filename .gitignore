@@ -1,4 +1,4 @@
-*.logs
-
-/node_modules/
-bower_components/
+_site/
+.DS_Store
+.*.swp
+.idea

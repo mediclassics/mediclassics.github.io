@@ -1,0 +1,24 @@
+# General Jekyll Config
+highlighter: rouge
+url: https://mediclassics.github.io
+lsi: false
+exclude: [ LICENSE, README.md, .gitignore, Gemfile, Gemfile.lock ]
+
+# Site Settings
+baseurl:            "" # Base URL must end WITHOUT a slash, default: ""
+timezone:           Asia/Seoul # https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+
+# Build settings
+host: localhost
+port: 8384
+
+# ref : https://jekyllrb.com/docs/collections/
+collections:
+  contents:
+        output: true
+        permalink:  /:collection/:path
+        author: host
+
+# Global Variables
+# formulaurl: "/shanghanlun/reference/Formulas"
+# herburl: "/shanghanlun/reference/Herbs"

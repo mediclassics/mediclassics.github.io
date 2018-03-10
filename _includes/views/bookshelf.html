@@ -1,0 +1,93 @@
+<!-- Page Content -->
+<!-- http://stackoverflow.com/questions/25864169/need-html-css-styling-for-book-shelf -->
+<link href="{{site.baseurl}}/assets/css/ebookshelf.css" rel="stylesheet">
+
+<div class="row">
+	<div class="col-lg-12">
+		<h1 class="page-header">{{ page.title }}
+			<small>{{ page.subtitle }}</small>
+		</h1>
+	</div>
+</div>
+
+<div class="container">
+
+{% assign booklist = site.data.books | where: "category", page.variables.target_category %}
+
+{% assign ir = booklist.size | divided_by: 6 | plus: 0 %}
+
+	{% for i in (0..ir) %}
+
+	<div class="row">
+
+		{% for k in (0..2) %}
+
+		{% assign q = i | times: 6 | plus: k %}
+		{% assign book = booklist[q] %}
+
+		<!-- 1st -->
+
+		{% if book %}
+		<div class="col-xs-4 col-md-2">
+
+			{% if book.platform != 'gitbook' %}
+
+			<a href="{{ book.link }}" target="_blank">
+				<img src="{{ book.coverimgurl }}" class="img-responsive book"
+				alt="{{ page.title }} {{ page.subtitle }} {{ book.title }} {{ book.platform }} {{ book.category }}">
+			</a>
+
+			{% else %}
+
+		  	<a href="https://www.gitbook.com/book/kmongoing/{{ book.gitbookid }}/details" target="_blank">
+		  		<img src="https://git.gitbook.com/raw/kmongoing/{{ book.gitbookid }}/master/cover_small.jpg?token=a21vbmdvaW5nOjU2NDU5NzQ0LWE3YWUtNDk3Yi1iNGU1LTBlZTJjYzRkNzI4Yw%3D%3D" class="img-responsive book"
+				alt="{{ page.title }} {{ page.subtitle }} {{ book.title }} {{ book.platform }} {{ book.category }}">
+			</a>
+
+			{% endif %}
+
+		</div>
+		{% endif %}
+
+		{% endfor %}
+
+		<div class="col-xs-12 shelf hidden-md hidden-lg"></div>
+
+		<!-- 2nd -->
+
+		{% for j in (3..5) %}
+
+		{% assign p = i | times: 6 | plus: j %}
+		{% assign book = booklist[p] %}
+
+		{% if book %}
+		<div class="col-xs-4 col-md-2">
+
+			{% if book.platform != 'gitbook' %}
+
+			<a href="{{ book.link }}" target="_blank">
+				<img src="{{ book.coverimgurl }}" class="img-responsive book"
+				alt="{{ page.title }} {{ page.subtitle }} {{ book.title }} {{ book.platform }} {{ book.category }}">
+			</a>
+
+			{% else %}
+
+			<a href="https://www.gitbook.com/book/kmongoing/{{ book.gitbookid }}/details" target="_blank">
+				<img src="https://git.gitbook.com/raw/kmongoing/{{ book.gitbookid }}/master/cover_small.jpg?token=a21vbmdvaW5nOjU2NDU5NzQ0LWE3YWUtNDk3Yi1iNGU1LTBlZTJjYzRkNzI4Yw%3D%3D" class="img-responsive book"
+				alt="{{ page.title }} {{ page.subtitle }} {{ book.title }} {{ book.platform }} {{ book.category }}">
+			</a>
+
+			{% endif %}
+
+		</div>
+		{% endif%}
+
+		{% endfor %}
+
+		<div class="col-xs-12 shelf"></div>
+
+
+	</div>
+	{% endfor %}
+
+</div>

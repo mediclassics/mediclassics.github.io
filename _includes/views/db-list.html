@@ -1,0 +1,48 @@
+<link href="{{site.baseurl}}/assets/css/table.css" rel="stylesheet">
+
+<div ng-app="mediclassicsInfo" ng-controller="DBlistCtrl">
+
+	<div class="row">
+		<div class="col-lg-12">
+			<h1 class="page-header">서적목록
+				<small>한의학고전DB</small>
+			</h1>
+		</div>
+	</div>
+
+	<div class="container" ng-hide="booklistloaded">
+		{% include loading.html %}
+	</div>
+
+	<div class="container" ng-show="booklistloaded">
+
+	<table class="table table-striped table-hover table-responsive">
+		<thead  class="thead-default">
+			<tr>
+				<th>#</th>
+				<th>제목</th>
+				<th>권수</th>
+				<th>글자수</th>
+				<th>바로가기</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="book in dblist | orderBy:'title'">
+				<th scope="row" ng-bind="$index+1"></th>
+				<td ng-bind="book.title"></td>
+				<td ng-bind="book.volumes | number"></td>
+				<td ng-bind="book.size | number"></td>
+				<td>
+					<!-- https://stackoverflow.com/questions/3330979/outputting-literal-curly-braces-in-liquid-templates -->
+					{% assign special = 'https://mediclassics.kr/books/{{book.id}}' %}
+					<a class="btn btn-default" ng-href="{{ special }}" target="_blank">
+						열기 <span class="glyphicon glyphicon-new-window" aria-hidden="true"></span>
+					</a>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+
+	</div>
+
+</div>

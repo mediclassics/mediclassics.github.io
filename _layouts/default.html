@@ -1,25 +1,27 @@
 <!DOCTYPE html>
-<html lang="en" ng-app="mediclassicsInfo">
-  
+<html lang="en">
+
 <head>
 
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
+    <meta name="author" content="{{ site.data.theme.author }}">
+    <meta name="description" content="{{ site.data.theme.description }} {{ page.description }}">
 
-    <title>MEDICLASSICS Info</title>
+	<title>{{ site.data.theme.title }} | {{ page.title }}</title>
 
 	<link href="https://mediclassics.kr/img/favicon.ico" rel="shortcut icon" type="image/x-ico" />
 	<link href="https://mediclassics.kr/img/favicon.ico" rel="icon" type="image/x-ico" />
+
     <!-- Bootstrap Core CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-	<!-- Angularjs Animate Custom CSS -->
-	<!-- <link href="css/ng-animate.css" rel="stylesheet"> -->
+    <link href="{{site.baseurl}}/assets/css/bootstrap.min.css" rel="stylesheet">
+
     <!-- Custom CSS -->
-    <link href="css/1-col-portfolio.css" rel="stylesheet">
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="{{site.baseurl}}/assets/css/1-col-portfolio.css" rel="stylesheet">
+	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" >
+
+	<link href="{{site.baseurl}}/assets/css/custom.css" rel="stylesheet">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -33,33 +35,33 @@
 <body>
 
 	<!-- Navigation -->
-	<div ng-include="'parts/navi.html'"></div>
+	{% include navi.html %}
 
     <!-- Page Content -->
     <div class="container">
 
 
-		<ng-view></ng-view>
+		{{ content }}
 
         <hr>
 
         <!-- Footer -->
-		<div ng-include="'parts/footer.html'"></div>
+		{% include footer.html %}
 
     </div>
     <!-- /.container -->
 
     <!-- jQuery -->
-    <script src="js/jquery.js"></script>
+    <script src="{{site.baseurl}}/assets/js/jquery.js"></script>
     <!-- Bootstrap Core JavaScript -->
-    <script src="js/bootstrap.min.js"></script>
+    <script src="{{site.baseurl}}/assets/js/bootstrap.min.js"></script>
 	<!-- Promise on IE -->
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/bluebird/3.3.5/bluebird.min.js"></script>
-    <!-- Angularjs -->
-	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.min.js"></script>
-	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular-route.min.js"></script>
 
-	<script src="js/ng-index.js"></script>
+	{% include angular.html %}
+
+	{% include analytics.html %}
+
 </body>
 
 </html>
