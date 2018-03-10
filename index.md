@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "연구 결과"
+title: "Showcase"
 description: ""
 ---
 
