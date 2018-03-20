@@ -243,24 +243,32 @@
   title: 일제강점기 의생 총목록 1 (영년의생)
   platform: 한국한의학연구원
   gitbookid: 해당없음
-  link: "https://goo.gl/WphNEz"
-  coverimgurl: https://goo.gl/glVAJw
+  link: /files/01일제강점기_의생총목록1_배포용.pdf
+  coverimgurl: /img/한국의학사료총서/01일제강점기_의생총목록1_small.png
   category: 사료총서
 
 - publishDate: 2017년 04월 28일
   title: 일제강점기 의생 총목록 2 (한년의생 상)
   platform: 한국한의학연구원
   gitbookid: 해당없음
-  link: https://goo.gl/XGDCE2
-  coverimgurl: https://goo.gl/Zwtx4J
+  link: /files/02일제강점기_의생총목록2_배포용.pdf
+  coverimgurl: /img/한국의학사료총서/02일제강점기_의생총목록2_small.png
   category: 사료총서
 
 - publishDate: 2017년 04월 28일
   title: 일제강점기 의생 총목록 3 (한년의생 하)
   platform: 한국한의학연구원
   gitbookid: 해당없음
-  link: https://goo.gl/qWwYP1
-  coverimgurl: https://goo.gl/VszJXT
+  link: /files/03일제강점기_의생총목록3_배포용.pdf
+  coverimgurl: /img/한국의학사료총서/03일제강점기_의생총목록3_small.png
+  category: 사료총서
+
+- publishDate: 2018년 02월 28일
+  title: 조선시대 의관 총목록
+  platform: 한국한의학연구원
+  gitbookid: 해당없음
+  link: /files/04조선시대_의관총목록_배포용.pdf
+  coverimgurl: /img/한국의학사료총서/04조선시대_의관총목록_small.jpg
   category: 사료총서
 
 
