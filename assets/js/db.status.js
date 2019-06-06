@@ -10,7 +10,8 @@ angular.module("DBStatus", ["chart.js", "ngSanitize", "dthree"])
 		rooturl: "https://mediclassics.kr/api/statistics/",
 		conf : {
 			headers : {
-				'Authorization': "b0a200dc25e74531b8cae037427d1578",
+// 				'Authorization': "b0a200dc25e74531b8cae037427d1578",
+				'Authorization': '2e04658beced4490b7a5f147450dd365',
 				'Content-Type': "application/json;charset=utf-8"
 			},
 			data: "" // 이게 없으면 Content-Type이 설정되지 않음 //
