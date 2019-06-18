@@ -19,6 +19,3 @@ collections:
         permalink:  /:collection/:path
         author: host
 
-# Global Variables
-# formulaurl: "/shanghanlun/reference/Formulas"
-# herburl: "/shanghanlun/reference/Herbs"
