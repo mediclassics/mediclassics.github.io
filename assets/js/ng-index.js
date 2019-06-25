@@ -35,7 +35,15 @@ function ($scope, $http, api) {
 		$scope.dblist = _list;
 		console.log(_list)
 		$scope.booklistloaded = true
+
+	}).catch(function(e){
+		console.log(e)
+		alert("통신 장애로 데이터를 불러오지 못했습니다.")
+		$scope.dblist = []
+		$scope.booklistloaded = true
+		$scope.$apply()
 	})
+
 
 }])
 
@@ -99,10 +107,10 @@ function ($scope, $http, api) {
 
 		}).catch(function(e){
 			console.log(e)
+			alert("통신 장애로 데이터를 불러오지 못했습니다.")
 			$scope.ebook_traffic = []
 			$scope.booklistloaded = true
 			$scope.$apply()
-
 		})
 
 	})
