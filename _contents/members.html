@@ -1,0 +1,77 @@
+---
+layout: default
+title: "Members"
+description: ""
+---
+
+<div class="container">
+
+		<div class="row">
+			<div class="col-md-12">
+				<h1 class="text-center">Team Members</h1>
+				<p class="text-center"></p>
+			</div>
+		</div>
+
+		{% for m in site.data.members %}
+		{% if m.show %}
+		<div class="row">
+			<div>
+					<div class="col-md-2">
+						<img src="{{site.baseurl}}/img/members/{{ m.img }}" class="img-circle img-responsive">
+					</div>
+					<div class="col-md-4">
+						<h3 class="text-left">{{ m.name }}<small>	{{ m.nickname }} </small>	</h3>
+
+						<p class="text-left">
+						{% if m.homepage %}
+						<a href="{{m.homepage}}" target="_blank">
+							<span class="glyphicon glyphicon-home" aria-hidden="true"></span>
+						</a>
+						{% endif %}
+						{% if m.email %}
+						<a href="mailto:{{m.email}}" target="_blank">
+							<span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>
+						</a>
+						{% endif %}
+						</p>
+						{% if m.major %}
+						<p class="text-left">
+							<span class="glyphicon glyphicon-education" aria-hidden="true"></span>
+							{{ m.major }}
+						</p>
+						{% endif %}
+						{% if m.workat %}
+						<p class="text-left">
+							<span class="glyphicon glyphicon-link" aria-hidden="true"></span>
+							<a href="{{m.workat[1]}}" target="_blank">{{ m.workat[0] }}</a>
+						</p>
+						{% endif %}
+
+						<p class="text-left">{{ m.disc }}</p>
+					</div>
+		  </div>
+		</div>
+		<br>
+
+		{% else %}
+		<div class="row">
+			<div>
+					<div class="col-md-2">
+						<img src="{{site.baseurl}}/img/members/{{ m.img }}" class="img-circle img-responsive">
+					</div>
+					<div class="col-md-4">
+						<h3 class="text-left">{{ m.nickname }}</h3>
+						<p class="text-left">신비주의!</p>
+					</div>
+		  </div>
+		</div>
+		<br>
+		{% endif %}
+
+
+			{% endfor %}
+
+
+
+</div>

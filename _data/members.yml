@@ -1,0 +1,54 @@
+- img: Oh.png
+  name: 오준호
+  nickname: Oh
+  major: 한의학, 의사학
+  desc:
+  homepage: "https://pinedance.github.io/research/list.html"
+  email: "junho@kiom.re.kr"
+  workat: ["KIOM", "https://kiom.re.kr/"]
+  show: true
+
+- img: Tmp.jpg
+  name: 권오민
+  nickname: Kwon
+  major: 한의학, 의사학
+  desc:
+  homepage: "https://www.kiom.re.kr/organization/personViewMain.do?id=0626&srch_mu_site=&menu_nix=4AHFx6LW&seltab_idx=6&orgid=6"
+  workat: ["KIOM", "https://kiom.re.kr/"]
+  show: false
+
+- img: Park.png
+  name: 박상영
+  nickname: Park
+  major: 한문학
+  desc:
+  homepage: "https://www.kiom.re.kr/organization/personViewMain.do?id=0491&srch_mu_site=&menu_nix=4AHFx6LW&seltab_idx=6&orgid=6"
+  workat: ["KIOM", "https://kiom.re.kr/"]
+  show: false
+
+- img: Ku.png
+  name: 구현희
+  nickname: Ku
+  major: 한문교육학
+  desc:
+  homepage: "https://www.kiom.re.kr/organization/personViewMain.do?id=0873&srch_mu_site=&menu_nix=4AHFx6LW&seltab_idx=0&orgid=0"
+  workat: ["KIOM", "https://kiom.re.kr/"]
+  show: false
+
+- img: Lee.png
+  name: 이정현
+  nickname: Lee
+  major: 한문학
+  desc:
+  homepage: "https://www.kiom.re.kr/organization/personViewMain.do?id=1289&srch_mu_site=&menu_nix=4AHFx6LW&seltab_idx=0&orgid=0"
+  workat: ["KIOM", "https://kiom.re.kr/"]
+  show: false
+
+- img: Tmp.jpg
+  name: 김상현
+  nickname: Kim
+  major: 한의학, 원전학
+  desc:
+  homepage: "https://www.kiom.re.kr/organization/personViewMain.do?id=1468&srch_mu_site=&menu_nix=4AHFx6LW&seltab_idx=0&orgid=0"
+  workat: ["KIOM", "https://kiom.re.kr/"]
+  show: false
