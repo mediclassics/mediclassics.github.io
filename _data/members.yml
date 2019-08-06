@@ -8,7 +8,7 @@
   workat: ["KIOM", "https://kiom.re.kr/"]
   show: true
 
-- img: Tmp.jpg
+- img: Kwon.png
   name: 권오민
   nickname: Kwon
   major: 한의학, 의사학
@@ -44,7 +44,7 @@
   workat: ["KIOM", "https://kiom.re.kr/"]
   show: false
 
-- img: Tmp.jpg
+- img: Kim.png
   name: 김상현
   nickname: Kim
   major: 한의학, 원전학
