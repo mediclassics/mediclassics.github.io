@@ -1,0 +1,54 @@
+- group: utility
+  title: Every Formula
+  url: http://every-formula.netlify.app/
+  img: every-formula.netlify.app.crop.png
+  desc: 한의학 처방을 검색하고 분석할 수 있습니다.
+
+- group: utility
+  title: 고문헌 분석 서비스(demo)
+  url: http://info.mediclassics.kr/demo-collocation-viewer/
+  img: demo-collocation-viewer.png
+  desc: 고문헌의 내용을 분석할 수 있습니다.
+
+- group: utility
+  title: 한의학 고서 목록
+  url: https://info.mediclassics.kr/booklist/
+  img: booklist.png
+  desc: 《한의학 고서 목록》을 웹에서 검색할 수 있습니다.
+
+- group: 한의학고전DB 부가서비스
+  title: 한의학고전DB Dashboard
+  url: http://info.mediclassics.kr/contents/database/dashboard
+  img: db-dashboard.png
+  desc: 한의학고전DB 데이터 크기 및 사용량을 확인할 수 있습니다.
+
+- group: 한의학고전DB 부가서비스
+  title: 고의서 원문 배포 서비스
+  url: http://info.mediclassics.kr/apps/dist-texts/index.html
+  img: db-apps-dist-text.png
+  desc: 한의학고전DB에서 제공하고 있는 고의서 원문을 다운로드 받을 수 있습니다.
+
+- group: tool
+  title: Hanzi Text Normalizer
+  url: http://info.mediclassics.kr/apps/hanzitn/index.html
+  img: hanzitn.png
+  desc: 디지털로 입력할 때 한자의 이중코드자, 이체자를 병합해 줍니다. 
+
+- group: tool
+  title: Hanzi Combinator
+  url: http://info.mediclassics.kr/apps/combinator/index.html
+  img: combinator.png
+  desc: 한자를 입력하면 독음으로 자동 변환해 줍니다.
+
+- group: tool
+  title: Hanzi Replacer
+  url: http://info.mediclassics.kr/apps/replacer/index.html
+  img: replacer.png
+  desc: 글자를 바꾸어 줍니다.
+
+- group: tool
+  title: TSV JSON converter
+  url: http://info.mediclassics.kr/apps/converter/index.html
+  img: converter.png
+  desc: tsv json을 상호 변환해 줍니다.
+

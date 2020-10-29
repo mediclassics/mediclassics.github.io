@@ -1,0 +1,38 @@
+<style>
+.img-responsive {
+    /*width: auto; height: auto;*/
+    height: 300px;
+}
+
+.portfolio-item {
+	margin-top: 60px;
+	border-bottom: 0.5px solid #F5F5F5;
+}
+</style>
+
+{% assign apps = site.data.apps | where:"group", include.group %}
+
+<!-- Page Header -->
+<div class="row">
+	<div class="col-lg-12">
+		<h1 class="page-header">{{ include.title }}
+			<small>{{ include.description }}</small>
+		</h1>
+	</div>
+</div>
+<!-- /.row -->
+
+<!-- Projects Row -->
+<div class="row">
+	{% for app in apps %}
+	<div class="col-md-6 portfolio-item">
+		<a href="{{ app.url }}" target="_blank">
+			<img class="img-responsive" src="{{ site.baseurl}}/img/{{app.img}}">
+		</a>
+		<h3>
+			<a href="{{ app.url }}" target="_blank">{{ app.title }}</a>
+		</h3>
+		<p>{{ app.desc }}</p>
+	</div>
+	{% endfor %}
+</div>
