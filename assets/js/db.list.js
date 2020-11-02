@@ -2,6 +2,16 @@ var app = angular.module('mediclassicsInfo', ["ngRoute"]);
 
 app.constant("api", {
 
+	rooturl: "https://mediclassics.kr/api/statistics/",
+	conf : {
+		headers : {
+// 				'Authorization': "b0a200dc25e74531b8cae037427d1578",
+			'Authorization': '2e04658beced4490b7a5f147450dd365',
+			'Content-Type': "application/json;charset=utf-8"
+		},
+		data: "" // 이게 없으면 Content-Type이 설정되지 않음 //
+	},
+
 	gas_base : { 		//  google apps script
 		rooturl: "https://script.google.com/macros/s/AKfycbympvympXtKsR7l5B7-cZ_UTUgQtfa0Ew8beP-UiEGbeWw8XLg/exec"
 	},
@@ -14,16 +24,19 @@ app.constant("api", {
 
 })
 
+
 app.controller("DBlistCtrl", ['$scope', '$http', 'api',
 function ($scope, $http, api) {
 
 	$scope.booklistloaded = false
 
-	var reqUrl = api.gas_mediclassics.rooturl + "?order=statistics"
+	// var reqUrl = api.gas_mediclassics.rooturl + "?order=statistics"
+	var reqUrl = api.rooturl + "character-count"
 
-	$http.get( encodeURI(reqUrl) ).then(function(res){
-		// console.log(res)
-		var _list = res.data.data.DATA.map(function(e) {
+	$http.get( encodeURI(reqUrl), api.conf ).then(function(res){
+		console.log(res)
+		// var _list = res.data.data.DATA.map(function(e) {
+		var _list = res.data.DATA.map(function(e) {
 		    return {
 				id: e.book_id,
 				title: e.book_nm_kor,
