@@ -104,7 +104,8 @@ angular.module("DBStatus", ["chart.js", "ngSanitize", "dthree"])
 
 		$scope.dataMonthly = [ datas, monthlymeans ]
 
-		console.log( datas )
+		console.log( "dataMonthly", datas )
+		console.log( "dataMonthlyMeans", monthlymeans )
 
 		//-------
 
@@ -120,12 +121,19 @@ angular.module("DBStatus", ["chart.js", "ngSanitize", "dthree"])
 
 		$scope.monthly = {
 			total: dailytotal.thousands(),
+			_meanbyday: parseInt(dailytotal / dataDaily.length ),
 			meanbyday: parseInt(dailytotal / dataDaily.length ).thousands()
+			
 		}
 
-		var dailylymeans = Array.apply(null, Array( dataDaily.length )).map(function(){return $scope.monthly.meanbyday})
+		var dailylymeans = Array.apply(null, Array( dataDaily.length )).map(function(){return $scope.monthly._meanbyday})
+		// var dailylymeans = Array.apply(null, Array( dataDaily.length )).map(function(){return 1300 })
 
 		$scope.dataDaily = [ dataDaily, dailylymeans ]
+
+		console.log( "dataDaily", dataDaily )
+		console.log( "dataDailyMean", dailylymeans )
+		console.log($scope.dataDaily)
 
 	}
 
@@ -172,7 +180,7 @@ angular.module("DBStatus", ["chart.js", "ngSanitize", "dthree"])
 		var monthlymeans = Array.apply(null, Array( datas.length )).map( function(){return parseInt( res.data.TOTAL / datas.length ) })
 
 		$scope.dataCustom = [ datas, monthlymeans ]
-		console.log(datas)
+		console.log("dataCustom", datas)
 	}
 
 
