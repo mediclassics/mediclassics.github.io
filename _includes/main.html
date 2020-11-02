@@ -1,159 +1,30 @@
-<!-- Project One -->
+
+{% for prj in site.data.main.prj %}
+
+<!-- Project -->
 <div class="row">
     <div class="col-md-7">
-        <a href="https://mediclassics.kr">
-            <img class="img-responsive" src="img/index01.jpg" alt="">
+        <a href="{{ prj.link | replace: "BASEURL", site.baseurl }}" target="_blank">
+            <img class="img-responsive" src="{{ prj.img }}" alt="">
         </a>
     </div>
 
     <div class="col-md-5">
-        <h3>한의학고전DB <small>mediclassics.kr</small></h3>
-        <h4>한의학 고전을 웹에서 만나다</h4>
-        <p>한의학 고문헌을 열람하고 검색할 수 있는 웹서비스입니다. </p>
+        <h3>{{ prj.title }}<small>{{ prj.title2 }}</small></h3>
+        <h4>{{ prj.subtitle }}</h4>
+        <p>{{ prj.desc }}</p>
         <!-- <div class="btn-group"> -->
-
-            <a class="btn btn-primary" href="https://mediclassics.kr">
-                바로가기
+            {% for btn in prj.btns %}
+            <a class="btn btn-primary" href="{{ btn.link | replace: "BASEURL", site.baseurl }}" target="_blank">
+                {{ btn.text }} {{ site.baseurl }}
                 <span class="glyphicon glyphicon-chevron-right"></span>
             </a>
+            {% endfor %}
 
-            <a class="btn btn-info" href="http://info.mediclassics.kr/document">
-                이용가이드
-                <span class="glyphicon glyphicon-chevron-right"></span>
-            </a>
-
-            <a class="btn btn-info" href="{{site.baseurl}}/contents/database/list">
-                서적목록
-                <span class="glyphicon glyphicon-chevron-right"></span>
-            </a>
     </div>
 </div>
 <!-- /.row -->
-
 <hr>
+{% endfor %}
 
 
-
-<!-- Project Three -->
-<div class="row">
-    <div class="col-md-7">
-        <a href="https://goo.gl/0rjUQc">
-            <img class="img-responsive" src="img/index04.png" alt="">
-        </a>
-    </div>
-    <div class="col-md-5">
-        <h3>내손안에동의보감 <small>Mobile Application</small></h3>
-        <h4>동의보감 모바일 앱</h4>
-        <p>동의보감을 열람하고 검색할 수 있도록 최적화된 모바일 어플리케이션입니다.</p>
-        <a class="btn btn-primary" href="https://goo.gl/0rjUQc">Google app store
-            <span class="glyphicon glyphicon-chevron-right"></span></a>
-        <a class="btn btn-primary" href="https://kc.mediclassics.kr">Web version
-            <span class="glyphicon glyphicon-chevron-right"></span></a>
-    </div>
-</div>
-<!-- /.row -->
-
-<hr>
-
-<!-- Project Two -->
-
-<!-- 2020-06-26 공공데이터 민원 문제로 잠시 내림
-<div class="row">
-    <div class="col-md-7">
-        <a href="http://info.mediclassics.kr/bookshelf/">
-            <img class="img-responsive" src="img/index02.png" alt="">
-        </a>
-    </div>
-    <div class="col-md-5">
-        <h3>고전한의번역서 <small>eBook</small></h3>
-        <h4>한의학 고전을 eBook으로 만나다</h4>
-        <p>한국 전통의학을 이해하는데 중요한 서적들을 번역하여 간행하고 있습니다.</p>
-
-        <a class="btn btn-primary" href="http://info.mediclassics.kr/bookshelf/list/eBook/고유의서">
-            고유의서 서가
-            <span class="glyphicon glyphicon-chevron-right"></span>
-        </a>
-
-        <a class="btn btn-primary" href="http://info.mediclassics.kr/bookshelf/list/eBook/식치의서">
-            식치의서 서가
-                <span class="glyphicon glyphicon-chevron-right"></span>
-            </a>
-
-        <a class="btn btn-info" href="http://info.mediclassics.kr/bookshelf/books/guide">
-            이용가이드
-            <span class="glyphicon glyphicon-chevron-right"></span>
-        </a>
-
-
-    </div>
-</div>
-
-
-
-<hr>
-
-
-<div class="row">
-    <div class="col-md-7">
-        <a href="http://info.mediclassics.kr/bookshelf/">
-            <img class="img-responsive" src="img/index03.png" alt="">
-        </a>
-    </div>
-
-    <div class="col-md-5">
-        <h3>비정기 발간서</h3>
-        <h4>국역서 / 다국어 번역서 / 연구서</h4>
-        <p>한국 전통의학 연구에 도움이 되는 서적들을 비정기적으로 간행하고 있습니다.</p>
-
-        <a class="btn btn-primary" href="http://info.mediclassics.kr/bookshelf/list/distBook/한국의학사료총서">
-            한국의학사료총서
-            <span class="glyphicon glyphicon-chevron-right"></span>
-        </a>
-        
-        <a class="btn btn-primary" href="http://info.mediclassics.kr/bookshelf/list/paperBook/정선의안">
-            정선의안시리즈
-            <span class="glyphicon glyphicon-chevron-right"></span>
-        </a>
-
-        <a class="btn btn-primary" href="http://info.mediclassics.kr/bookshelf/list/paperBook/기타간행물">
-            기타간행물
-            <span class="glyphicon glyphicon-chevron-right"></span>
-        </a>
-
-    </div>
-</div>
-
-
-
-2020-06-26 공공데이터 민원 문제로 잠시 내림 -->
-
-<!-- /.row -->
-
-<!-- Project five -->
-<div class="row">
-    <div class="col-md-7">
-        <a href="">
-            <img class="img-responsive" src="img/index04.png" alt="">
-        </a>
-    </div>
-    <div class="col-md-5">
-        <h3>한의학 웹앱<small>Single Page Applications</small></h3>
-        <h4>웹을 통해 편리한 기능을 구현하다.</h4>
-        <p>고문헌 텍스트를 가공하거나 활용할 수 있는 웹 어플리케이션입니다. </p>
-        <a class="btn btn-primary" href="{{site.baseurl}}/contents/apps/db">
-            Mediclassics Helpers
-            <span class="glyphicon glyphicon-chevron-right"></span>
-        </a>
-        <a class="btn btn-primary" href="{{site.baseurl}}/contents/apps/spa">
-            Mediclassics Applications
-            <span class="glyphicon glyphicon-chevron-right"></span>
-        </a>
-        <a class="btn btn-primary" href="{{site.baseurl}}/contents/apps/tool">
-            Mediclassics Tools
-            <span class="glyphicon glyphicon-chevron-right"></span>
-        </a>
-    </div>
-</div>
-<!-- /.row -->
-
-<hr>
