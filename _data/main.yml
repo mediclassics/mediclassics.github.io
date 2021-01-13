@@ -19,7 +19,7 @@ prj:
     desc: 동의보감을 열람하고 검색할 수 있도록 최적화된 모바일 어플리케이션입니다.
     link: https://kc.mediclassics.kr
     img: img/main/index04.png
-    btns: 
+    btns:
       - link: https://goo.gl/0rjUQc
         text: Google app store
       - link: https://kc.mediclassics.kr
@@ -50,13 +50,13 @@ prj:
         text: 고유의서 서가
       - link: https://info.mediclassics.kr/bookshelf/list/eBook/식치의서
         text: 식치의서 서가
-      - link: https://info.mediclassics.kr/bookshelf/books/guide
+      - link: https://info.mediclassics.kr/bookshelf/board/ebook-guide
         text: 이용가이드
 
   - title: 비정기 발간서
     title2: 국역서 / 다국어 번역서 / 연구서
     subtitle: 한국 전통의학 연구에 도움이 되는 서적들을 비정기적으로 간행하고 있습니다.
-    desc:  
+    desc:
     link: https://info.mediclassics.kr/bookshelf/
     img: img/main/index03.png
     btns:
@@ -66,4 +66,3 @@ prj:
         text: 정선의안시리즈
       - link: https://info.mediclassics.kr/bookshelf/list/paperBook/기타간행물
         text: 기타간행물
-
