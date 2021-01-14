@@ -53,20 +53,20 @@ prj:
       - link: https://info.mediclassics.kr/bookshelf/board/ebook-guide
         text: 이용가이드
 
-  - title: 발간서 (배포)
-    title2: 국역서 / 다국어 번역서 / 연구서
-    subtitle: 한국 전통의학 연구에 도움이 되는 서적들을 비정기적으로 간행하고 있습니다. 온라인에서 파일 형태로 배포하고 있습니다.
-    desc:
+  - title: 발간서
+    title2: 배포
+    subtitle: 국역서 / 다국어 번역서 / 연구서
+    desc: 한국 전통의학 연구에 도움이 되는 서적들을 간행하고 있습니다. 온라인에서 파일 형태로 배포하고 있습니다.
     link: https://info.mediclassics.kr/bookshelf/list/distBook/list
     img: img/main/index07.png
     btns:
       - link: https://info.mediclassics.kr/bookshelf/list/distBook/한국의학사료총서
         text: 한국의학사료총서
 
-  - title: 발간서 (발매)
-    title2: 국역서 / 다국어 번역서 / 연구서
-    subtitle: 한국 전통의학 연구에 도움이 되는 서적들을 비정기적으로 간행하고 있습니다. 온오프라인 서점에서 구입하실 수 있습니다.
-    desc:
+  - title: 발간서
+    title2: 발매
+    subtitle: 국역서 / 다국어 번역서 / 연구서
+    desc: 한국 전통의학 연구에 도움이 되는 서적들을 간행하고 있습니다. 온라인에서 파일 형태로 배포하고 있습니다.
     link: https://info.mediclassics.kr/bookshelf/list/paperBook/list
     img: img/main/index08.png
     btns:
